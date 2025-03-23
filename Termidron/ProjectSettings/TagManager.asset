@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Key
+  - ExitDoor
   layers:
   - Default
   - TransparentFX

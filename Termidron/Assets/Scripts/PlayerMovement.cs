@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public GameManager game;
     public float moveSpeed = 5f;
     public float rotationSpeed = 100f;
     public float jumpForce = 419f;
@@ -14,15 +15,17 @@ public class PlayerMovement : MonoBehaviour
         rb.freezeRotation = true; 
     }
 
-    void Update()
+    void FixedUpdate()
     {
+        if (!game.IsGameInProgress()) return;
+
         float moveInput = Input.GetAxis("Vertical");
         float rotateInput = Input.GetAxis("Horizontal");
 
-        Vector3 moveDirection = transform.forward * -moveInput * moveSpeed * Time.deltaTime;
-        transform.position += moveDirection;
-
-        transform.Rotate(Vector3.up * rotateInput * rotationSpeed * Time.deltaTime);
+        Vector3 moveDirection = transform.forward * -moveInput * moveSpeed;
+        rb.velocity = new Vector3(moveDirection.x, rb.velocity.y, moveDirection.z);
+        Quaternion deltaRotation = Quaternion.Euler(Vector3.up * rotateInput * rotationSpeed * Time.fixedDeltaTime);
+        rb.MoveRotation(rb.rotation * deltaRotation);
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {

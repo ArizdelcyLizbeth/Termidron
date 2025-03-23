@@ -1,0 +1,121 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class GameManager : MonoBehaviour
+{
+    public UIManager uiManager;
+    public GameObject[] keys;
+    public GameObject mainCamera;
+    public GameObject mainCharacter;
+    public KeyCollector keyCollector;
+    private enum GameState { Start, Gaming, Finish }
+    private GameState currentState;
+    private float countdownTime;
+
+    void Start()
+    {
+        SetState(GameState.Start);
+    }
+
+    public bool IsGameInProgress()
+    {
+        return currentState == GameState.Gaming;
+    }
+
+    public void InitializeGame() 
+    {
+        mainCharacter.transform.position = new Vector3(0f, 0f, 0f);
+        mainCharacter.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+        mainCamera.transform.position = new Vector3(0f, 3f, -5f);
+        mainCamera.transform.rotation = Quaternion.Euler(3.5f, 0f, 0f);
+        SetState(GameState.Start);
+        foreach (GameObject key in keys)
+        {
+            key.SetActive(true);
+        }
+        keyCollector.ResetKeysCollected();
+    }
+
+    private void SetState(GameState newState)
+    {
+        currentState = newState;
+        switch (currentState)
+        {
+            case GameState.Start:
+                StartGameLogic();
+                uiManager.ActivateUI(0);
+                break;
+            case GameState.Gaming:
+                UpdateGameLogic();
+                uiManager.ActivateUI(1);
+                break;
+            case GameState.Finish:
+                FinishGameLogic();
+                uiManager.ActivateUI(2);
+                break;
+        }
+    }
+
+    public void StartGame()
+    {
+        if (currentState == GameState.Start)
+        {
+            uiManager.DeactivateUI(0);
+            SetState(GameState.Gaming);
+            StartCoroutine(CountdownCoroutine());
+        }
+    }
+
+    public void FinishGame()
+    {
+        if (currentState == GameState.Gaming)
+        {
+            SetState(GameState.Finish);
+        }
+    }
+
+    public void RestartGame()
+    {
+        if (currentState == GameState.Finish)
+        {
+            SetState(GameState.Start);
+        }
+    }
+
+    private IEnumerator CountdownCoroutine()
+    {
+        while (countdownTime > 0 && IsGameInProgress())
+        {
+            int minutes = Mathf.FloorToInt(countdownTime / 60);
+            int seconds = Mathf.FloorToInt(countdownTime % 60);
+            uiManager.UpdateTimer($"Tiempo restante: {minutes:00}:{seconds:00}");
+            countdownTime -= 1f;
+            yield return new WaitForSeconds(1f);
+        }
+        uiManager.UpdateTimer("Tiempo restante: 00:00");
+        FinishGame();
+    }
+
+    public bool IsTimeRemaining()
+    {
+        return countdownTime > 0;
+    }
+
+    private void StartGameLogic()
+    {
+        uiManager.DeactivateAllUI();
+        countdownTime = 60f;
+    }
+
+    private void UpdateGameLogic()
+    {
+        // tAMBIEN DEBERIA TENER UN METODO QUE FORMATEE O REINICIE TODO DEL DRON PERO TODAVIA NO ESTA BIEN DEFINIDO
+        Debug.Log("AQUI DEBERIAN IR DOS METODOS PARA CORRER LOS ALGORITMOS");
+    }
+
+    private void FinishGameLogic()
+    {
+        uiManager.DeactivateUI(1);
+    }
+}
