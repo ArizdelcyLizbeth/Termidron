@@ -1,11 +1,15 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement />
-    <ui:VisualElement>
-        <ui:VisualElement>
-            <ui:Button text="Jugar" display-tooltip-when-elided="true" name="Play" />
-            <ui:Button text="Créditos" display-tooltip-when-elided="true" name="Credits" />
+    <Style src="project://database/Assets/UI/Display0/Display0.uss?fileID=7433441132597879392&amp;guid=b7c50f3978dc9a64bbfc1fa26d06455b&amp;type=3#Display0" />
+    <ui:VisualElement class="display0Container">
+        <ui:VisualElement class="logoContainer">
+            <ui:VisualElement class="logo" style="background-image: url(&quot;project://database/Assets/Images/logo.jpg?fileID=2800000&amp;guid=cdec2daace439694da6df9b918d8c36b&amp;type=3#logo&quot;); -unity-background-scale-mode: scale-to-fit;" />
         </ui:VisualElement>
-        <ui:VisualElement>
+        <ui:VisualElement class="buttonsContainer">
+            <ui:Button text="Jugar" display-tooltip-when-elided="true" name="Play" class="gameButton" />
+            <ui:VisualElement class="middlesButtons">
+                <ui:Button text="Instrucciones" display-tooltip-when-elided="true" name="Instructions" />
+                <ui:Button text="Créditos" display-tooltip-when-elided="true" name="Credits" />
+            </ui:VisualElement>
             <ui:Button text="Salir" display-tooltip-when-elided="true" name="Exit" />
         </ui:VisualElement>
     </ui:VisualElement>

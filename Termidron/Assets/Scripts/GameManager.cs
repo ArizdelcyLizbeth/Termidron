@@ -89,11 +89,11 @@ public class GameManager : MonoBehaviour
         {
             int minutes = Mathf.FloorToInt(countdownTime / 60);
             int seconds = Mathf.FloorToInt(countdownTime % 60);
-            uiManager.UpdateTimer($"Tiempo restante: {minutes:00}:{seconds:00}");
+            uiManager.UpdateTimer($"{minutes:00}:{seconds:00}");
             countdownTime -= 1f;
             yield return new WaitForSeconds(1f);
         }
-        uiManager.UpdateTimer("Tiempo restante: 00:00");
+        uiManager.UpdateTimer("00:00");
         FinishGame();
     }
 

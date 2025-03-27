@@ -1,15 +1,16 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement>
-        <ui:VisualElement>
+    <Style src="project://database/Assets/UI/Display1/Display1.uss?fileID=7433441132597879392&amp;guid=4caa5ca6bb907764d85f629d433cfb1c&amp;type=3#Display1" />
+    <ui:VisualElement class="display1Container">
+        <ui:VisualElement class="utilitiesContainer">
+            <ui:VisualElement />
+            <ui:VisualElement />
             <ui:VisualElement>
                 <ui:Label display-tooltip-when-elided="true" name="Timer" />
             </ui:VisualElement>
-            <ui:VisualElement>
-                <ui:Label text="Llaves encontradas:" display-tooltip-when-elided="true" />
-                <ui:Label display-tooltip-when-elided="true" name="Keys" />
-            </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement />
-        <ui:VisualElement />
+        <ui:VisualElement class="messageContainer">
+            <ui:Label text="Mensaje que va a ir enmedio" display-tooltip-when-elided="true" />
+        </ui:VisualElement>
+        <ui:VisualElement name="MiniMap" class="miniMapContainer" />
     </ui:VisualElement>
 </ui:UXML>

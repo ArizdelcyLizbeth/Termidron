@@ -1,1 +1,26 @@
-VisualElement {}
+.display1Container {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	height: 100%;
+	align-items: flex-end;
+	justify-content: space-between;
+}
+
+.display1Container .utilitiesContainer {
+	width: 33.33%;
+	height: 30%;
+}
+
+.display1Container .messageContainer {
+	width: 33.33%;
+	height: 30%;
+}
+
+.display1Container .miniMapContainer {
+	width: 33.33%;
+	height: 30%;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
