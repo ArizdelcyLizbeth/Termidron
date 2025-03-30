@@ -10,17 +10,80 @@
 .display1Container .utilitiesContainer {
 	width: 33.33%;
 	height: 30%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.display1Container .utilitiesContainer .countersContainer {
+	display: flex;
+	width: 66.66%;
+	height: 100%;
+}
+
+.display1Container .utilitiesContainer .keysContainer .key {
+	display: flex;
+	width: 30%;
+	height: 100%;
+}
+
+.display1Container .utilitiesContainer .hearthsContainer .hearth {
+	display: flex;
+	width: 18%;
+	height: 100%;
+}
+
+.display1Container .utilitiesContainer .hearthsContainer,
+.display1Container .utilitiesContainer .keysContainer {
+	display: flex;
+	width: 100%;
+	height: 30%;
+	justify-content: space-between;
+}
+
+.display1Container .utilitiesContainer .clockContainer {
+	display: flex;
+	justify-content: center;
+	align-self: center;
+	height: 100%;
+	width: 33.33%;
+}
+
+.display1Container .utilitiesContainer .clockContainer .clock {
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	width: 100%;
+	height: 100%;
 }
 
 .display1Container .messageContainer {
 	width: 33.33%;
 	height: 30%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.display1Container .messageContainer .message {
+	width: 95%;
+	height: 95%;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-self: center;
 }
 
 .display1Container .miniMapContainer {
 	width: 33.33%;
 	height: 30%;
-	border-top-left-radius: 10px;
-	border-top-right-radius: 10px;
-	border-bottom-left-radius: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.display1Container .miniMapContainer .miniMap {
+	display: flex;
+	width: 95%;
+	height: 90%;
+	border-radius: 5px;
 }

@@ -7,16 +7,24 @@ public class Display2 : MonoBehaviour
 {
     public GameManager game;
     private UIDocument display;
-    private Label text;
+    private Label title;
+    private Label subtitle;
     private Button goToTheStart;
 
     void OnEnable()
     {
         display = GetComponent<UIDocument>();
         VisualElement root = display.rootVisualElement;
-        text = root.Q<Label>("MainLabel");
+        title = root.Q<Label>("Title");
+        subtitle = root.Q<Label>("Subtitle");
         goToTheStart = root.Q<Button>("Return");
         goToTheStart.RegisterCallback<ClickEvent>(GoToTheStart);
+    }
+
+    public void UpdateTitleAndSubtitle(string titulo, string subtitulo)
+    {
+        this.title.text = titulo;
+        this.subtitle.text = subtitulo;
     }
 
     private void GoToTheStart(ClickEvent evt)

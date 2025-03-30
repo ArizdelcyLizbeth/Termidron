@@ -1,16 +1,30 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/Display1/Display1.uss?fileID=7433441132597879392&amp;guid=4caa5ca6bb907764d85f629d433cfb1c&amp;type=3#Display1" />
     <ui:VisualElement class="display1Container">
-        <ui:VisualElement class="utilitiesContainer">
-            <ui:VisualElement />
-            <ui:VisualElement />
-            <ui:VisualElement>
-                <ui:Label display-tooltip-when-elided="true" name="Timer" />
+        <ui:VisualElement class="utilitiesContainer" style="flex-direction: row;">
+            <ui:VisualElement class="clockContainer" style="background-image: url(&quot;project://database/Assets/Images/clock.png?fileID=2800000&amp;guid=08a277592c6f6db428ed7bc7db7630f7&amp;type=3#clock&quot;); -unity-background-scale-mode: scale-to-fit; -unity-background-image-tint-color: rgb(91, 91, 91);">
+                <ui:Label display-tooltip-when-elided="true" name="Timer" class="clock" style="align-items: center; -unity-text-align: middle-center; -unity-font-style: bold; color: rgb(255, 255, 255);" />
+            </ui:VisualElement>
+            <ui:VisualElement class="countersContainer" style="justify-content: flex-end;">
+                <ui:VisualElement class="keysContainer" style="flex-direction: row;">
+                    <ui:VisualElement name="Key1" class="key key1" style="background-image: url(&quot;project://database/Assets/Images/key.png?fileID=2800000&amp;guid=10d0fcef201e4bc42a6bca8dc23eecdc&amp;type=3#key&quot;); -unity-background-scale-mode: scale-to-fit; justify-content: center;" />
+                    <ui:VisualElement name="Key2" class="key key2" style="background-image: url(&quot;project://database/Assets/Images/key.png?fileID=2800000&amp;guid=10d0fcef201e4bc42a6bca8dc23eecdc&amp;type=3#key&quot;); -unity-background-scale-mode: scale-to-fit;" />
+                    <ui:VisualElement name="Key3" class="key key3" style="background-image: url(&quot;project://database/Assets/Images/key.png?fileID=2800000&amp;guid=10d0fcef201e4bc42a6bca8dc23eecdc&amp;type=3#key&quot;); -unity-background-scale-mode: scale-to-fit;" />
+                </ui:VisualElement>
+                <ui:VisualElement class="hearthsContainer" style="flex-direction: row; flex-wrap: nowrap;">
+                    <ui:VisualElement name="Heart5" class="hearth heart5" style="background-image: url(&quot;project://database/Assets/Images/heart.png?fileID=2800000&amp;guid=a20563037af8c6646a2f4606d6408eeb&amp;type=3#heart&quot;); -unity-background-scale-mode: scale-to-fit;" />
+                    <ui:VisualElement name="Heart4" class="hearth heart4" style="background-image: url(&quot;project://database/Assets/Images/heart.png?fileID=2800000&amp;guid=a20563037af8c6646a2f4606d6408eeb&amp;type=3#heart&quot;); -unity-background-scale-mode: scale-to-fit;" />
+                    <ui:VisualElement name="Heart3" class="hearth heart3" style="background-image: url(&quot;project://database/Assets/Images/heart.png?fileID=2800000&amp;guid=a20563037af8c6646a2f4606d6408eeb&amp;type=3#heart&quot;); -unity-background-scale-mode: scale-to-fit;" />
+                    <ui:VisualElement name="Heart2" class="hearth heart2" style="background-image: url(&quot;project://database/Assets/Images/heart.png?fileID=2800000&amp;guid=a20563037af8c6646a2f4606d6408eeb&amp;type=3#heart&quot;); -unity-background-scale-mode: scale-to-fit;" />
+                    <ui:VisualElement name="Heart1" class="hearth heart1" style="background-image: url(&quot;project://database/Assets/Images/heart.png?fileID=2800000&amp;guid=a20563037af8c6646a2f4606d6408eeb&amp;type=3#heart&quot;); -unity-background-scale-mode: scale-to-fit;" />
+                </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement class="messageContainer">
-            <ui:Label text="Mensaje que va a ir enmedio" display-tooltip-when-elided="true" />
+            <ui:Label display-tooltip-when-elided="true" class="message" style="flex-wrap: nowrap; flex-direction: column; -unity-text-align: middle-center; white-space: normal;" />
         </ui:VisualElement>
-        <ui:VisualElement name="MiniMap" class="miniMapContainer" />
+        <ui:VisualElement class="miniMapContainer">
+            <ui:VisualElement name="MiniMap" class="miniMap" />
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

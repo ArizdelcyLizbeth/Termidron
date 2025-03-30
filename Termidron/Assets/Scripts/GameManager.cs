@@ -67,11 +67,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void FinishGame()
+    public void FinishGame(string title, string subtitle)
     {
         if (currentState == GameState.Gaming)
         {
             SetState(GameState.Finish);
+            uiManager.UpdateFinal(title, subtitle);
         }
     }
 
@@ -94,7 +95,7 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(1f);
         }
         uiManager.UpdateTimer("00:00");
-        FinishGame();
+        FinishGame("DEMASIADO TARDE", "La salida estuvo tan cerca… pero el tiempo no tuvo piedad. Inténtalo otra vez.");
     }
 
     public bool IsTimeRemaining()

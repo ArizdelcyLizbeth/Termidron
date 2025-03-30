@@ -12,6 +12,12 @@ public class UIManager : MonoBehaviour
         display1.UpdateTime(time);
     }
 
+    public void UpdateFinal(string title, string subtitle)
+    {
+        Display2 display2 = uiElements[2].GetComponent<Display2>();
+        display2.UpdateTitleAndSubtitle(title, subtitle);
+    }
+
     public void ActivateUI(int index)
     {
         if (index >= 0 && index < uiElements.Length)

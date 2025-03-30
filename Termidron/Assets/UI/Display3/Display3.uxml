@@ -1,0 +1,18 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Display3/Display3.uss?fileID=7433441132597879392&amp;guid=3a8c9fa91538bc849a426073c4c005bc&amp;type=3#Display3" />
+    <ui:VisualElement class="display3Container">
+        <ui:ScrollView class="intructionsContainer">
+            <ui:VisualElement>
+                <ui:Label text="Termidron" display-tooltip-when-elided="true" />
+                <ui:Label text="Eres un brillante científico atrapado en tu propio laboratorio. El sistema de seguridad del laboratorio ha fallado y los robots de seguridad han cobrado vida. Tienes solo 5 minutos para escapar, pero no será fácil." display-tooltip-when-elided="true" style="flex-wrap: wrap; white-space: normal; -unity-text-align: middle-left;" />
+            </ui:VisualElement>
+            <ui:VisualElement>
+                <ui:Label text="Objetivo:" display-tooltip-when-elided="true" />
+                <ui:Label text="Recoge 3 llaves escondidas en el laboratorio para desbloquear la puerta de escape antes de que se agote el tiempo. Pero, ¡ten cuidado! Los robots están patrullando el lugar, y si te atrapan, perderás tiempo valioso. Además, el laboratorio está lleno de obstáculos peligrosos que te restarán vida si los tocas. Si tu vida llega a cero, ¡el juego habrá terminado!" display-tooltip-when-elided="true" style="white-space: normal;" />
+            </ui:VisualElement>
+        </ui:ScrollView>
+        <ui:VisualElement>
+            <ui:Button text="Volver al menú" display-tooltip-when-elided="true" name="Back" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

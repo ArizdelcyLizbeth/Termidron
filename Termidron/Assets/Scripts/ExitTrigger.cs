@@ -15,7 +15,7 @@ public class ExitTrigger : MonoBehaviour
             gameManager.IsTimeRemaining()
         )
         {
-            gameManager.FinishGame();
+            gameManager.FinishGame("¡LEYENDA INMORTAL!", "Los libros contarán tu historia. Rápido, astuto y sin miedo. ¡Eres un verdadero campeón!");
         }
     }
 }

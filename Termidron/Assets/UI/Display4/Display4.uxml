@@ -1,0 +1,22 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Display4/Display4.uss?fileID=7433441132597879392&amp;guid=4d8a62f74b1f0a742af47f6fd27d8767&amp;type=3#Display4" />
+    <ui:VisualElement class="display4Container">
+        <ui:ScrollView class="creditsContainer">
+            <ui:VisualElement>
+                <ui:Label text="El Viaje de los Creadores&#x9;" display-tooltip-when-elided="true" style="white-space: normal;" />
+                <ui:Label text="Este viaje fue solo posible gracias a los arquitectos del código, los guardianes del diseño y los titanes del sonido. ¡Aplausos para ellos!" display-tooltip-when-elided="true" style="flex-wrap: wrap; white-space: normal;" />
+                <ui:VisualElement>
+                    <ui:Label text="Este videojuego fue creado por:" display-tooltip-when-elided="true" style="white-space: normal;" />
+                    <ui:Label text="Arizdelcy Lizbeth Nepomuceno Escarcega" display-tooltip-when-elided="true" style="white-space: normal;" />
+                    <ui:Label text="Cristian Ricardo Gallegos Diego" display-tooltip-when-elided="true" style="white-space: normal;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement>
+                <ui:Label text="Gracias por jugar. ¡Nos vemos en la próxima aventura!" display-tooltip-when-elided="true" style="white-space: normal;" />
+            </ui:VisualElement>
+        </ui:ScrollView>
+        <ui:VisualElement>
+            <ui:Button text="Volver al menú" display-tooltip-when-elided="true" name="Back" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

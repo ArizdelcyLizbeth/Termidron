@@ -1,6 +1,12 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement>
-        <ui:Label display-tooltip-when-elided="true" name="MainLabel" />
-        <ui:Button text="Volver al menu." display-tooltip-when-elided="true" name="Return" />
+    <Style src="project://database/Assets/UI/Display2/Display2.uss?fileID=7433441132597879392&amp;guid=83b236ad8245be34481ea8570aa86250&amp;type=3#Display2" />
+    <ui:VisualElement class="display2Container">
+        <ui:VisualElement class="textContainer">
+            <ui:Label display-tooltip-when-elided="true" name="Title" class="title" style="justify-content: center; align-items: center; -unity-text-align: middle-center; white-space: normal; -unity-font-style: bold; font-size: 24px; flex-wrap: wrap;" />
+            <ui:Label display-tooltip-when-elided="true" name="Subtitle" class="subtitle" style="-unity-text-align: middle-center; white-space: normal; justify-content: center; align-items: center; flex-wrap: wrap;" />
+        </ui:VisualElement>
+        <ui:VisualElement class="buttonContainer">
+            <ui:Button text="Volver al menú" display-tooltip-when-elided="true" name="Return" />
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
