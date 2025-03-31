@@ -2,39 +2,20 @@ using UnityEngine;
 
 public class DroneShooting : MonoBehaviour
 {
-    public GameObject bulletPrefab;      
-    public Transform shootPoint;         
-    public float shootInterval = 0.5f;   
-    public float bulletSpeed = 10f;     
-    public AudioClip shootSound;        
+    public GameObject bulletPrefab;
+    public Transform shootPoint;
+    public float shootInterval = 0.5f;
+    public float bulletSpeed = 10f;
 
-    private float nextShootTime = 0f;    
+    private float lastShootTime = 0f;
 
-    void Update()
+    public void Shoot()
     {
-       
-        if (Time.time >= nextShootTime)
+        if (Time.time >= lastShootTime + shootInterval)
         {
-            Shoot();
-            nextShootTime = Time.time + shootInterval;
-        }
-    }
-
-    void Shoot()
-    {
-        GameObject bullet = Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
-
-        Rigidbody rb = bullet.GetComponent<Rigidbody>();
-
-        if (rb != null)
-        {
-            rb.useGravity = false;  
-            rb.velocity = shootPoint.forward * bulletSpeed;  
-        }
-
-        if (shootSound != null)
-        {
-            AudioSource.PlayClipAtPoint(shootSound, shootPoint.position);
+            GameObject bullet = Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
+            bullet.GetComponent<Rigidbody>().velocity = shootPoint.forward * bulletSpeed;
+            lastShootTime = Time.time;
         }
     }
 }
