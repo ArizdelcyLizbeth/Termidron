@@ -9,6 +9,11 @@ public class GameManager : MonoBehaviour
     public GameObject mainCamera;
     public GameObject mainCharacter;
     public KeyCollector keyCollector;
+
+    public AudioClip majorSound;
+    public AudioClip loseSound;
+    private AudioSource audioSource;
+
     private enum GameState { Start, Gaming, Finish }
     private GameState currentState;
     private float countdownTime;
@@ -16,6 +21,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         SetState(GameState.Start);
+        audioSource = gameObject.AddComponent<AudioSource>();  
     }
 
     public bool IsGameInProgress()
@@ -64,6 +70,7 @@ public class GameManager : MonoBehaviour
             uiManager.DeactivateUI(0);
             SetState(GameState.Gaming);
             StartCoroutine(CountdownCoroutine());
+            PlayMajorSound();  
         }
     }
 
@@ -73,6 +80,7 @@ public class GameManager : MonoBehaviour
         {
             SetState(GameState.Finish);
             uiManager.UpdateFinal(title, subtitle);
+            PlayLoseSound();  
         }
     }
 
@@ -95,7 +103,7 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(1f);
         }
         uiManager.UpdateTimer("00:00");
-        FinishGame("DEMASIADO TARDE", "La salida estuvo tan cerca… pero el tiempo no tuvo piedad. Inténtalo otra vez.");
+        FinishGame("DEMASIADO TARDE", "La salida estuvo tan cerca  pero el tiempo no tuvo piedad. IntÃ©ntalo otra vez.");
     }
 
     public bool IsTimeRemaining()
@@ -111,12 +119,26 @@ public class GameManager : MonoBehaviour
 
     private void UpdateGameLogic()
     {
-        // tAMBIEN DEBERIA TENER UN METODO QUE FORMATEE O REINICIE TODO DEL DRON PERO TODAVIA NO ESTA BIEN DEFINIDO
-        Debug.Log("AQUI DEBERIAN IR DOS METODOS PARA CORRER LOS ALGORITMOS");
+        // pendiente si lo usamos
     }
 
     private void FinishGameLogic()
     {
         uiManager.DeactivateUI(1);
+    }
+
+    private void PlayMajorSound()
+    {
+        if (audioSource.isPlaying) return;  
+        audioSource.clip = majorSound;
+        audioSource.loop = true; 
+        audioSource.Play();
+    }
+
+    private void PlayLoseSound()
+    {
+        audioSource.clip = loseSound;
+        audioSource.loop = false;  
+        audioSource.Play();
     }
 }

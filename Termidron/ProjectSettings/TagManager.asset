@@ -8,6 +8,8 @@ TagManager:
   - Key
   - ExitDoor
   - Hazard
+  - Sword
+  - Maze
   layers:
   - Default
   - TransparentFX

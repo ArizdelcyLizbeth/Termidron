@@ -2,7 +2,7 @@
     <Style src="project://database/Assets/UI/Display0/Display0.uss?fileID=7433441132597879392&amp;guid=b7c50f3978dc9a64bbfc1fa26d06455b&amp;type=3#Display0" />
     <ui:VisualElement class="display0Container">
         <ui:VisualElement class="logoContainer">
-            <ui:VisualElement class="logo" style="background-image: url(&quot;project://database/Assets/Images/logo.jpg?fileID=2800000&amp;guid=cdec2daace439694da6df9b918d8c36b&amp;type=3#logo&quot;); -unity-background-scale-mode: scale-to-fit;" />
+            <ui:VisualElement class="logo" style="background-image: url(&quot;project://database/Assets/Images/loguito.png?fileID=2800000&amp;guid=4124589330a657943bb5c3db1b827a8b&amp;type=3#loguito&quot;); -unity-background-scale-mode: scale-to-fit;" />
         </ui:VisualElement>
         <ui:VisualElement class="buttonsContainer">
             <ui:Button text="Jugar" display-tooltip-when-elided="true" name="Play" class="gameButton" />
