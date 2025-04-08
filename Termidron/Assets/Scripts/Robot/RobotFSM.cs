@@ -1,21 +1,29 @@
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 public class RobotFSM : MonoBehaviour
 {
-    public enum RobotState { Patrol, Alert, Attack }
+    public enum RobotState { Patrol, Alert, Attack, Hit }
     public RobotState currentState;
 
+    [Header("References")]
     public Transform player;
     public List<Transform> waypoints;
+    public GameManager gameManager;
+
+    [Header("Speeds & Ranges")]
     public float patrolSpeed = 3f;
     public float alertSpeed = 4.5f;
     public float attackRange = 10f;
     public float alertRange = 15f;
     public float hearingRange = 20f;
     public float waypointThreshold = 1f;
-    public GameManager gameManager;
-    
+
+    [Header("Hit Reaction")]
+    public float hitDuration = 6f;       
+    private bool isHit = false;          
+
     private int currentWaypointIndex = 0;
     private bool isReturning = false;
     private DroneShooting shootingScript;
@@ -30,6 +38,11 @@ public class RobotFSM : MonoBehaviour
     {
         if (!gameManager.IsGameInProgress()) return;
 
+        if (isHit)
+        {
+            return;
+        }
+
         switch (currentState)
         {
             case RobotState.Patrol:
@@ -41,10 +54,12 @@ public class RobotFSM : MonoBehaviour
             case RobotState.Attack:
                 Attack();
                 break;
+            case RobotState.Hit:
+                break;
         }
     }
 
-    void Patrol()
+    private void Patrol()
     {
         Transform targetWaypoint = waypoints[currentWaypointIndex];
         MoveTowards(targetWaypoint.position, patrolSpeed);
@@ -53,73 +68,73 @@ public class RobotFSM : MonoBehaviour
         {
             if (!isReturning)
             {
-                if (currentWaypointIndex < waypoints.Count - 1)
-                    currentWaypointIndex++;
-                else
-                    isReturning = true;
+                if (currentWaypointIndex < waypoints.Count - 1) currentWaypointIndex++;
+                else isReturning = true;
             }
             else
             {
-                if (currentWaypointIndex > 0)
-                    currentWaypointIndex--;
-                else
-                    isReturning = false;
+                if (currentWaypointIndex > 0) currentWaypointIndex--;
+                else isReturning = false;
             }
         }
 
         CheckForPlayer();
     }
 
-    void Alert()
+    private void Alert()
     {
         MoveTowards(player.position, alertSpeed);
 
-        if (Vector3.Distance(transform.position, player.position) <= attackRange)
-        {
+        float dist = Vector3.Distance(transform.position, player.position);
+        if (dist <= attackRange)
             currentState = RobotState.Attack;
-        }
-        else if (Vector3.Distance(transform.position, player.position) > alertRange)
-        {
+        else if (dist > alertRange)
             currentState = RobotState.Patrol;
-        }
     }
 
-    void Attack()
+    private void Attack()
     {
         transform.LookAt(player);
-        
-        if (shootingScript != null)
-        {
-            shootingScript.Shoot();
-        }
+        shootingScript?.Shoot();
 
         if (Vector3.Distance(transform.position, player.position) > attackRange)
-        {
             currentState = RobotState.Alert;
-        }
     }
 
-    void CheckForPlayer()
+    private void CheckForPlayer()
     {
-        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-        if (distanceToPlayer <= alertRange)
-        {
+        if (Vector3.Distance(transform.position, player.position) <= alertRange)
             currentState = RobotState.Alert;
-        }
     }
 
-    void MoveTowards(Vector3 target, float speed)
+    private void MoveTowards(Vector3 target, float speed)
     {
-        Vector3 direction = (target - transform.position).normalized;
-        transform.position += direction * speed * Time.deltaTime;
+        Vector3 dir = (target - transform.position).normalized;
+        transform.position += dir * speed * Time.deltaTime;
         transform.LookAt(target);
     }
 
     public void OnPlayerMakesNoise(Vector3 noisePosition)
     {
         if (Vector3.Distance(transform.position, noisePosition) <= hearingRange)
-        {
             currentState = RobotState.Alert;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!isHit && other.CompareTag("Sword"))
+        {
+            StartCoroutine(HandleHit());
+            Destroy(other.gameObject);  
         }
+    }
+
+    private IEnumerator HandleHit()
+    {
+        isHit = true;
+        currentState = RobotState.Hit;
+        yield return new WaitForSeconds(hitDuration);
+        isHit = false;
+        currentState = RobotState.Patrol;
     }
 }
