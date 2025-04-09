@@ -114,12 +114,12 @@ public class GameManager : MonoBehaviour
     private void StartGameLogic()
     {
         uiManager.DeactivateAllUI();
-        countdownTime = 60f;
+        countdownTime = 300f;
     }
 
     private void UpdateGameLogic()
     {
-        // pendiente si lo usamos
+        
     }
 
     private void FinishGameLogic()
