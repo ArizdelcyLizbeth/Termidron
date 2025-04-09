@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public GameManager game;
+    public SwordCollector swordCollector; 
     public float moveSpeed = 5f;
     public float rotationSpeed = 100f;
     public float jumpForce = 419f;
@@ -12,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        rb.freezeRotation = true; 
+        rb.freezeRotation = true;
     }
 
     void FixedUpdate()
@@ -31,6 +32,11 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isGrounded = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.E) && swordCollector != null)
+        {
+            swordCollector.DropSword(); 
         }
     }
 

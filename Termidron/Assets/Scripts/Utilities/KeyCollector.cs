@@ -30,7 +30,7 @@ public class KeyCollector : MonoBehaviour
         }
         else if (collision.collider.CompareTag("Hazard")) 
         {
-            gameManager.FinishGame("FIN DEL CAMINO", "Tus corazones latieron por última vez... y la oscuridad se apoderó de tu aventura.");
+            gameManager.FinishGame("FIN DEL CAMINO", "Tus corazones latieron por ï¿½ltima vez... y la oscuridad se apoderï¿½ de tu aventura.");
         }
     }
 
