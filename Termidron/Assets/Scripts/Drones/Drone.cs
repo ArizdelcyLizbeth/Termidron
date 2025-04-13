@@ -7,6 +7,7 @@ public class Drone : MonoBehaviour
 {
     public string area;
     public GameObject mainCharacter;
+    private Vector3 initialPosition;
     private NavMeshGraph graph;
     private List<Vector3> vertices;
     private bool isGaming;
@@ -23,6 +24,7 @@ public class Drone : MonoBehaviour
 
     void Start()
     {
+        initialPosition = transform.position;
         agent = GetComponent<NavMeshAgent>();
         graph = new NavMeshGraph();
         if (area == "A")
@@ -34,7 +36,7 @@ public class Drone : MonoBehaviour
             vertices = graph.areaBVertices;
         }
         hasPath = false;
-        isGaming = true;
+        isGaming = false;
         lastPosition = transform.position;
     }
 
@@ -49,12 +51,6 @@ public class Drone : MonoBehaviour
                 float minDistance = 2f;
                 Vector3 adjustedTarget = objective - directionToObjective * minDistance;
                 agent.SetDestination(adjustedTarget);
-
-                //agent.SetDestination(objective);
-
-
-
-
                 timeAtLastDestination = Time.time;
                 lastPosition = transform.position;
             }
@@ -112,6 +108,10 @@ public class Drone : MonoBehaviour
                 timeSinceLastPositionUpdate = 0f;
             }
         }
+        else
+        {
+            agent.ResetPath();
+        }
     }
 
     private Vector3 GetRandomVertex()
@@ -121,5 +121,20 @@ public class Drone : MonoBehaviour
 
         int index = Random.Range(0, vertices.Count);
         return vertices[index];
+    }
+
+    public void EnableGaming()
+    {
+        isGaming = true;
+    }
+
+    public void ResetToInitialPosition()
+    {
+        isGaming = false;
+        if (agent != null)
+        {
+            agent.ResetPath();
+        }
+        transform.position = initialPosition;
     }
 }

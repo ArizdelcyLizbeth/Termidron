@@ -7513,6 +7513,13 @@ MonoBehaviour:
   mainCamera: {fileID: 453236456}
   mainCharacter: {fileID: 786922441}
   keyCollector: {fileID: 786922446}
+  drones:
+  - {fileID: 1817369554}
+  - {fileID: 1090598914}
+  - {fileID: 1623940882}
+  - {fileID: 1796546687}
+  - {fileID: 1148772028}
+  - {fileID: 2021635200}
   majorSound: {fileID: 8300000, guid: 3d5e6bc0df6d79144bfabb6451a95bcc, type: 3}
   loseSound: {fileID: 8300000, guid: 85ce87739643592438847f217f60e61b, type: 3}
 --- !u!4 &288815860
@@ -9463,7 +9470,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: b9da2a006a732dc4e8cb41192f7b22e1, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b9da2a006a732dc4e8cb41192f7b22e1, type: 3}
       propertyPath: m_LocalScale.x
@@ -27223,7 +27230,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: b9da2a006a732dc4e8cb41192f7b22e1, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b9da2a006a732dc4e8cb41192f7b22e1, type: 3}
       propertyPath: m_LocalScale.x
@@ -28245,7 +28252,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: b9da2a006a732dc4e8cb41192f7b22e1, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b9da2a006a732dc4e8cb41192f7b22e1, type: 3}
       propertyPath: m_LocalScale.x
@@ -43529,7 +43536,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: b9da2a006a732dc4e8cb41192f7b22e1, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b9da2a006a732dc4e8cb41192f7b22e1, type: 3}
       propertyPath: m_LocalScale.x
@@ -45574,7 +45581,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: b9da2a006a732dc4e8cb41192f7b22e1, type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b9da2a006a732dc4e8cb41192f7b22e1, type: 3}
       propertyPath: m_LocalScale.x
@@ -47785,7 +47792,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: b9da2a006a732dc4e8cb41192f7b22e1, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b9da2a006a732dc4e8cb41192f7b22e1, type: 3}
       propertyPath: m_LocalScale.x
@@ -51421,7 +51428,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e053a4b4863ae5c46b76898b2e50ca33, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e053a4b4863ae5c46b76898b2e50ca33, type: 3}
       propertyPath: m_LocalPosition.z

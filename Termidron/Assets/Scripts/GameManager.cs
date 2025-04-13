@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public GameObject mainCamera;
     public GameObject mainCharacter;
     public KeyCollector keyCollector;
+    public GameObject[] drones;
 
     public AudioClip majorSound;
     public AudioClip loseSound;
@@ -119,11 +120,18 @@ public class GameManager : MonoBehaviour
 
     private void UpdateGameLogic()
     {
-        
+        foreach (GameObject drone in drones)
+        {
+            drone.GetComponent<Drone>().EnableGaming();
+        }
     }
 
     private void FinishGameLogic()
     {
+        foreach (GameObject drone in drones)
+        {
+            drone.GetComponent<Drone>().ResetToInitialPosition();
+        }
         uiManager.DeactivateUI(1);
     }
 
