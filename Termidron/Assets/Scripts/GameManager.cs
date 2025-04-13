@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Controlador principal del juego. Gestiona el ciclo de vida del juego (inicio, juego, fin),
+/// administra temporizadores, sonidos, drones, llaves y la interfaz de usuario.
+/// </summary>
 public class GameManager : MonoBehaviour
 {
     public UIManager uiManager;
@@ -19,17 +23,26 @@ public class GameManager : MonoBehaviour
     private GameState currentState;
     private float countdownTime;
 
+    /// <summary>
+    /// Inicializa el estado del juego y agrega un componente de audio.
+    /// </summary>
     void Start()
     {
         SetState(GameState.Start);
         audioSource = gameObject.AddComponent<AudioSource>();  
     }
 
+    /// <summary>
+    /// Devuelve true si el juego está en curso.
+    /// </summary>
     public bool IsGameInProgress()
     {
         return currentState == GameState.Gaming;
     }
 
+    /// <summary>
+    /// Restaura la posición inicial del personaje y la cámara, y reinicia las llaves.
+    /// </summary>
     public void InitializeGame() 
     {
         mainCharacter.transform.position = new Vector3(0f, 0f, 0f);
@@ -44,6 +57,9 @@ public class GameManager : MonoBehaviour
         keyCollector.ResetKeysCollected();
     }
 
+    /// <summary>
+    /// Cambia el estado actual del juego y ejecuta la lógica asociada.
+    /// </summary>
     private void SetState(GameState newState)
     {
         currentState = newState;
@@ -64,6 +80,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Inicia el juego si está en estado de inicio.
+    /// </summary>
     public void StartGame()
     {
         if (currentState == GameState.Start)
@@ -75,6 +94,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Finaliza la partida actual si se encuentra en progreso.
+    /// Cambia el estado del juego a "Finish", actualiza la interfaz de usuario con un mensaje personalizado,
+    /// y reproduce un sonido de derrota.
+    /// </summary>
+    /// <param name="title">Título principal que se mostrará al finalizar el juego.</param>
+    /// <param name="subtitle">Subtítulo o mensaje adicional con detalles del final del juego.</param>
     public void FinishGame(string title, string subtitle)
     {
         if (currentState == GameState.Gaming)
@@ -85,6 +111,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Reinicia el juego si está en estado finalizado.
+    /// </summary>
     public void RestartGame()
     {
         if (currentState == GameState.Finish)
@@ -93,6 +122,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Corrutina que actualiza el temporizador cada segundo y finaliza el juego si se agota el tiempo.
+    /// </summary>
     private IEnumerator CountdownCoroutine()
     {
         while (countdownTime > 0 && IsGameInProgress())
@@ -107,17 +139,26 @@ public class GameManager : MonoBehaviour
         FinishGame("DEMASIADO TARDE", "La salida estuvo tan cerca  pero el tiempo no tuvo piedad. Inténtalo otra vez.");
     }
 
+    /// <summary>
+    /// Devuelve true si aún queda tiempo en el cronómetro.
+    /// </summary>
     public bool IsTimeRemaining()
     {
         return countdownTime > 0;
     }
 
+    /// <summary>
+    /// Lógica de preparación cuando el juego entra en estado Start.
+    /// </summary>
     private void StartGameLogic()
     {
         uiManager.DeactivateAllUI();
         countdownTime = 300f;
     }
 
+    /// <summary>
+    /// Lógica activa durante el juego (habilita drones).
+    /// </summary>
     private void UpdateGameLogic()
     {
         foreach (GameObject drone in drones)
@@ -126,6 +167,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Lógica cuando el juego ha terminado (reinicia drones y UI).
+    /// </summary>
     private void FinishGameLogic()
     {
         foreach (GameObject drone in drones)
@@ -135,6 +179,9 @@ public class GameManager : MonoBehaviour
         uiManager.DeactivateUI(1);
     }
 
+    /// <summary>
+    /// Reproduce el audio del inicio del juego.
+    /// </summary>
     private void PlayMajorSound()
     {
         if (audioSource.isPlaying) return;  
@@ -143,6 +190,9 @@ public class GameManager : MonoBehaviour
         audioSource.Play();
     }
 
+    /// <summary>
+    /// Reproduce el audio de finalización del juego.
+    /// </summary>
     private void PlayLoseSound()
     {
         audioSource.clip = loseSound;

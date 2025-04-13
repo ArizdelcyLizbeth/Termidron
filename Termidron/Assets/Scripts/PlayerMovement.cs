@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/// <summary>
+/// Controla el movimiento del jugador, incluyendo traslación, rotación, salto y
+/// la interacción con la espada (recoger/soltar). Solo se activa cuando el juego está en curso.
+/// </summary>
 public class PlayerMovement : MonoBehaviour
 {
     public GameManager game;
@@ -10,12 +14,19 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     private bool isGrounded;
 
+    /// <summary>
+    /// Inicializa el Rigidbody y bloquea la rotación automática por físicas.
+    /// </summary>
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
     }
 
+    /// <summary>
+    /// Se ejecuta en cada frame físico. Controla el movimiento, rotación, salto e interacción.
+    /// Solo responde si el juego está en curso.
+    /// </summary>
     void FixedUpdate()
     {
         if (!game.IsGameInProgress()) return;
@@ -40,6 +51,10 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Detecta colisiones con el suelo para permitir saltos nuevamente.
+    /// </summary>
+    /// <param name="collision">Información de la colisión.</param>
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))

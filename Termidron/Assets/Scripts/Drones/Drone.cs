@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+/// <summary>
+/// Este script controla el comportamiento de un drone dentro de un área de navegación definida.
+/// El drone persigue al personaje principal dentro de un área específica y se mueve aleatoriamente dentro de su zona asignada cuando no está siguiendo al personaje.
+/// </summary>
 public class Drone : MonoBehaviour
 {
     public string area;
@@ -22,6 +26,10 @@ public class Drone : MonoBehaviour
     private const float inactivityThreshold = 3f;
     private float timeAtLastInactivityCheck = 0f;
 
+    /// <summary>
+    /// Método de inicio. Se ejecuta cuando el drone es instanciado o al iniciar el juego.
+    /// Inicializa las variables, el agente de navegación y configura los vértices en función del área asignada al drone.
+    /// </summary>
     void Start()
     {
         initialPosition = transform.position;
@@ -40,6 +48,10 @@ public class Drone : MonoBehaviour
         lastPosition = transform.position;
     }
 
+    /// <summary>
+    /// Método de actualización que se ejecuta cada fotograma.
+    /// Controla el movimiento del drone en función de la actividad del juego y la proximidad al objetivo.
+    /// </summary>
     void Update()
     {
         if (isGaming)
@@ -114,6 +126,10 @@ public class Drone : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Obtiene un vértice aleatorio dentro de los vértices del área asignada al drone.
+    /// </summary>
+    /// <returns>Un vértice aleatorio dentro del área.</returns>
     private Vector3 GetRandomVertex()
     {
         if (vertices == null || vertices.Count == 0)
@@ -123,11 +139,17 @@ public class Drone : MonoBehaviour
         return vertices[index];
     }
 
+    /// <summary>
+    /// Activa el drone para que comience a moverse y seguir al personaje principal.
+    /// </summary>
     public void EnableGaming()
     {
         isGaming = true;
     }
 
+    /// <summary>
+    /// Restaura al drone a su posición inicial y detiene su movimiento.
+    /// </summary>
     public void ResetToInitialPosition()
     {
         isGaming = false;

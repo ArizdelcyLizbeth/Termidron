@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Controla el movimiento de la cámara del minimapa para que siga suavemente a un objeto en la escena,
+/// manteniendo una altura fija y posicionándose en la vista superior.
+/// </summary>
 public class MiniMapCameraFollow : MonoBehaviour
 {
     public GameObject objectToFollow;
@@ -10,12 +14,19 @@ public class MiniMapCameraFollow : MonoBehaviour
     private Camera miniMapCamera;
     private Vector3 lastTargetPosition;
 
+    /// <summary>
+    /// Inicializa la cámara del minimapa y guarda la posición inicial del objetivo.
+    /// </summary>
     void Start()
     {
         miniMapCamera = GetComponent<Camera>();
         lastTargetPosition = objectToFollow.transform.position;
     }
 
+    /// <summary>
+    /// Actualiza la posición de la cámara en cada frame si el objetivo se ha movido.
+    /// La cámara se desplaza suavemente manteniendo la altura original.
+    /// </summary>
     void Update()
     {
         Vector3 targetPosition = objectToFollow.transform.position;

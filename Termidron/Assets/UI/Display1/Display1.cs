@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+/// <summary>
+/// Script que maneja la interfaz de usuario para la pantalla de juego, mostrando el minimapa,
+/// el temporizador, las llaves y los corazones del jugador.
+/// </summary>
 public class Display1 : MonoBehaviour
 {
     public Camera miniMapC;
@@ -16,6 +20,11 @@ public class Display1 : MonoBehaviour
     private VisualElement[] keys;
     private VisualElement[] hearts;
 
+    /// <summary>
+    /// Método llamado cuando el objeto se habilita en la escena.
+    /// Inicializa todos los elementos visuales de la UI, incluidos el minimapa, temporizador,
+    /// llaves y corazones.
+    /// </summary>
     void OnEnable()
     {
         display = GetComponent<UIDocument>();
@@ -41,6 +50,10 @@ public class Display1 : MonoBehaviour
         EnableAllHearts();
     }
 
+    /// <summary>
+    /// Método que se llama cada cuadro para actualizar la textura del minimapa con la imagen
+    /// renderizada de la cámara.
+    /// </summary>
     void Update()
     {
         RenderTexture.active = miniMapRT;
@@ -50,21 +63,36 @@ public class Display1 : MonoBehaviour
         miniMap.style.backgroundImage = new StyleBackground(miniMapTexture);
     }
 
+    /// <summary>
+    /// Actualiza el temporizador en la UI con el tiempo proporcionado.
+    /// </summary>
+    /// <param name="time">El tiempo que se mostrará en el temporizador.</param>
     public void UpdateTime(string time)
     {
         timer.text = time;
     }
 
+    /// <summary>
+    /// Actualiza el contador de llaves mostrando la llave correspondiente en la UI.
+    /// </summary>
+    /// <param name="number">El número de la llave que debe ser visible.</param>
     public void UpdateKeysCounter(int number) 
     {
         keys[number - 1].style.display = DisplayStyle.Flex;
     }
 
+    /// <summary>
+    /// Actualiza el contador de corazones, ocultando el corazón correspondiente al número de vida.
+    /// </summary>
+    /// <param name="number">El número de vida que debe ser ocultado.</param>
     public void UpdateHeartsCounter(int number)
     {
         hearts[4 - number].style.display = DisplayStyle.None;
     }
 
+    /// <summary>
+    /// Desactiva la visibilidad de todas las llaves en la UI.
+    /// </summary>
     private void DisableAllKeys()
     {
         foreach (var key in keys)
@@ -73,6 +101,9 @@ public class Display1 : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Activa la visibilidad de todos los corazones en la UI.
+    /// </summary>
     private void EnableAllHearts()
     {
         foreach (var heart in hearts)

@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Controla el seguimiento suave de la cámara principal hacia un objetivo especificado,
+/// manteniendo una distancia y altura constantes mientras ajusta la rotación para
+/// mantener al objetivo centrado en la vista.
+/// </summary>
 public class MainCameraTracker : MonoBehaviour
 {
     public Transform target;
@@ -12,6 +17,9 @@ public class MainCameraTracker : MonoBehaviour
     private float currentAngle;
     private Vector3 currentVelocity = Vector3.zero;
 
+    /// <summary>
+    /// Inicializa la posición y parámetros de seguimiento de la cámara al comenzar la escena.
+    /// </summary>
     void Start()
     {
         if (target == null) return;
@@ -26,6 +34,10 @@ public class MainCameraTracker : MonoBehaviour
         transform.position = initialPosition;
     }
 
+    /// <summary>
+    /// Realiza el seguimiento y rotación de la cámara una vez por frame,
+    /// después de que todos los objetos se han actualizado.
+    /// </summary>
     void LateUpdate()
     {
         if (target == null) return;
