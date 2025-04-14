@@ -10,6 +10,7 @@ TagManager:
   - Hazard
   - Sword
   - Maze
+  - CRGDRobot
   layers:
   - Default
   - TransparentFX

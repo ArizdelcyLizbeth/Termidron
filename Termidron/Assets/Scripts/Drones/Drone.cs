@@ -54,6 +54,8 @@ public class Drone : MonoBehaviour
     /// </summary>
     void Update()
     {
+
+        HandleShooting();
         if (isGaming)
         {
             Vector3 objective = mainCharacter.transform.position;
@@ -156,7 +158,43 @@ public class Drone : MonoBehaviour
         if (agent != null)
         {
             agent.ResetPath();
+            agent.enabled = false;
         }
         transform.position = initialPosition;
+        if (agent != null)
+        {
+            agent.enabled = true; 
+        }
+    }
+
+    public GameObject bulletPrefab;
+    public float shootForce = 20f;
+    public Vector3 offset = Vector3.zero;
+    private float shootCooldown = 2f;
+    private float lastShootTime = 0f;
+
+    /// <summary>
+    /// Controla la frecuencia de disparo del drone.
+    /// </summary>
+    void HandleShooting()
+    {
+        if (Time.time - lastShootTime >= shootCooldown)
+        {
+            Shoot();
+            lastShootTime = Time.time;
+        }
+    }
+
+    void Shoot()
+    {
+        Vector3 spawnPosition = transform.position + transform.TransformDirection(offset);
+        GameObject bullet = Instantiate(bulletPrefab, spawnPosition, transform.rotation);
+        Rigidbody rb = bullet.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.useGravity = false;
+            rb.AddForce(transform.forward * shootForce, ForceMode.Impulse);
+        }
+        Destroy(bullet, 5f);
     }
 }
